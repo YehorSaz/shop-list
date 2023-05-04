@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+.main-layout {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-around;*/
+    align-items: center;
+    background-color: lightgray;
+    position: absolute;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.new-button {
+    height: 100%;
+    width: 30%;
+    margin-right: 10px;
+    border-radius: 2rem;
+    font-size: 250%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/*--------Header----------*/
+
+.header {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 30%;
+    height: 50%;
+    border: 1px solid green;
+    border-radius: 1rem;
+    margin: 5% 5% 0 0;
 }
 
-.App-link {
-  color: #61dafb;
+.header-link > h3 {
+    margin: 0 auto;
+    color: green;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/*--------LISTS---------*/
+
+.lists {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.new-item-button {
+    align-self: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+.list-buttons {
+    display: flex;
+    height: 10vh;
+    position: relative;
+    left: 40%;
+}
+.plIcon {
+
+}
+
+.list-plus-icon {
+    width: 100%;
+    height: 100%;
+    color: green;
+}
+
+.mic-button {
+    margin-right: 10%;
+}
+
+
+
+/*--------AddNewPage-------*/
+
+.add-new-page, .link-plus {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.plus-icon {
+    align-self: center;
+    width: 90%;
+    height: 90%;
+    color: green;
 }
