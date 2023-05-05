@@ -1,18 +1,46 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {TiPlusOutline} from "react-icons/ti";
 import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {itemActions} from "../../redux/slices";
+import {List} from "../List/List";
+
 
 const Lists = () => {
 
-    const {register, reset, handleSubmit} = useForm();
+    const dispatch = useDispatch();
+    const {items, itemForEdit} = useSelector(state => state.item);
 
-        const formWrap = document.querySelector('.input-field');
+
+    const {register, reset, handleSubmit, setValue} = useForm({mode: "all"});
+
+    useEffect(() => {
+        if (itemForEdit){
+            setValue('item', itemForEdit.item)
+            setValue('id', itemForEdit.id)
+            showForm()
+        }
+    }, [itemForEdit, setValue]);
+
+
     const showForm = () => {
-        formWrap.style.cssText = `opacity: 1; z-index: 10`;
+        document.querySelector('#input-field').classList.add('show-form')
     }
     const hideForm = () => {
-        formWrap.style.cssText = `opacity: 0; z-index: -1`
+        document.querySelector('#input-field').classList.remove('show-form')
+    }
+
+    const save = (item) => {
+        dispatch(itemActions.create(item))
+        reset()
+        hideForm()
+    }
+
+    const update = (item) => {
+        dispatch(itemActions.updateItem(item))
+        reset()
+        hideForm()
     }
 
     return (
@@ -20,12 +48,22 @@ const Lists = () => {
         <div className={'lists'}>
             <h1>Lists</h1>
 
+            {
+                items.map(item => <List key={item.id} items={item}/>)
+            }
 
-            <div className={'input-field'}>
+            <div id={'input-field'} className={'input-field'}>
 
-                <form onSubmit={handleSubmit(hideForm)} className={'item-form'}>
+                <form onSubmit={handleSubmit(itemForEdit ? update : save)} className={'item-form'}>
                     <input type="text" placeholder={'продукт'} {...register('item')}/>
-                    <button>зберегти</button>
+
+                    <button className={'save-button'}>
+                        {itemForEdit ? 'оновити' : 'зберегти'}
+                    </button>
+
+                    <button onClick={handleSubmit(hideForm)} className={'hide-button'}>
+                        сховати
+                    </button>
                 </form>
 
             </div>
@@ -50,5 +88,6 @@ const Lists = () => {
         </div>
     );
 };
+
 
 export {Lists}
