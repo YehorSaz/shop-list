@@ -10,7 +10,7 @@ import {List} from "../List/List";
 const Lists = () => {
 
     const dispatch = useDispatch();
-    const {items, itemForEdit} = useSelector(state => state.item);
+    const {items, itemForEdit, count} = useSelector(state => state.item);
 
 
     const {register, reset, handleSubmit, setValue} = useForm({mode: "all"});
@@ -39,18 +39,21 @@ const Lists = () => {
 
     const update = (item) => {
         dispatch(itemActions.updateItem(item))
+        dispatch(itemActions.editItem(null))
         reset()
         hideForm()
     }
 
+
     return (
 
         <div className={'lists'}>
-            <h1>Lists</h1>
+            <h1>Залишилось {count}</h1>
 
-            {
+
+            <div className={'list-items'}>{
                 items.map(item => <List key={item.id} items={item}/>)
-            }
+            }</div>
 
             <div id={'input-field'} className={'input-field'}>
 
