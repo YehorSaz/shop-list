@@ -1,7 +1,8 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {itemActions} from "../../redux/slices";
 import {MdOutlineDoneOutline} from "react-icons/md";
+
+import {itemActions} from "../../redux/slices";
 
 const List = ({items}) => {
 

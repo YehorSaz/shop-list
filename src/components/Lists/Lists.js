@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-
-import {TiPlusOutline} from "react-icons/ti";
 import {useForm} from "react-hook-form";
+import {BsFillMicFill} from "react-icons/bs";
 import {useDispatch, useSelector} from "react-redux";
+
 import {itemActions} from "../../redux/slices";
 import {List} from "../List/List";
 
@@ -11,12 +11,10 @@ const Lists = () => {
 
     const dispatch = useDispatch();
     const {items, itemForEdit, count} = useSelector(state => state.item);
-
-
-    const {register, reset, handleSubmit, setValue} = useForm({mode: "all"});
+    const {register, reset, handleSubmit, setValue, formState: {isValid}} = useForm({mode: "all"});
 
     useEffect(() => {
-        if (itemForEdit){
+        if (itemForEdit) {
             setValue('item', itemForEdit.item)
             setValue('id', itemForEdit.id)
             showForm()
@@ -29,20 +27,52 @@ const Lists = () => {
     }
     const hideForm = () => {
         document.querySelector('#input-field').classList.remove('show-form')
+        document.querySelector('.save-button').classList.remove('save-button-none')
     }
 
     const save = (item) => {
-        dispatch(itemActions.create(item))
+        dispatch(itemActions.createItem(item))
         reset()
         hideForm()
     }
-
     const update = (item) => {
         dispatch(itemActions.updateItem(item))
         dispatch(itemActions.editItem(null))
         reset()
         hideForm()
     }
+
+
+    let SpeechRecognition =
+            window.SpeechRecognition || window.webkitSpeechRecognition,
+        recognition;
+
+    const speech = () => {
+
+        recognition = new SpeechRecognition();
+        console.log(recognition.lang);
+        recognition.lang = 'uk-UA';
+        recognition.interimResults = true;
+        recognition.start();
+
+
+        recognition.onresult = (event) => {
+
+            const item = event.results[0][0].transcript;
+
+            if (event.results[0].isFinal) {
+                dispatch(itemActions.createItem({item: item}))
+                document.querySelector('.save-button').classList.add('save-button-none')
+
+
+            } else {
+                setValue('item', item)
+            }
+        }
+        showForm()
+    };
+
+    let speech1 = 0;
 
 
     return (
@@ -55,17 +85,19 @@ const Lists = () => {
                 items.map(item => <List key={item.id} items={item}/>)
             }</div>
 
+
             <div id={'input-field'} className={'input-field'}>
 
                 <form onSubmit={handleSubmit(itemForEdit ? update : save)} className={'item-form'}>
-                    <input type="text" placeholder={'продукт'} {...register('item')}/>
 
-                    <button className={'save-button'}>
+                    <input type="text" placeholder={'продукт'} {...register('item')} required={true}/>
+
+                    <button className={'save-button save-button-none'} disabled={!isValid}>
                         {itemForEdit ? 'оновити' : 'зберегти'}
                     </button>
 
                     <button onClick={handleSubmit(hideForm)} className={'hide-button'}>
-                        сховати
+                        закрити
                     </button>
                 </form>
 
@@ -76,15 +108,20 @@ const Lists = () => {
 
                 <div className={'mic-button'}>
 
-                    <button className={'new-item-button'} onClick={() => showForm()}>
-                        MIC
+
+                    <button className={'new-item-button'}
+                            onTouchStart={() => speech1 = setTimeout(() => {
+                                speech()
+                            }, 2000)} onTouchEnd={() => {
+                        clearTimeout(speech1);
+                        showForm();
+                        reset();
+                    }}>
+                        <BsFillMicFill/>додати
                     </button>
 
                 </div>
 
-                <div className={'plIcon'}>
-                    <TiPlusOutline className={'list-plus-icon'}/>
-                </div>
 
             </div>
 

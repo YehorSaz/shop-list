@@ -15,7 +15,7 @@ const slice = createSlice({
         setItem: (state, action) => {
             state.items = action.payload;
         },
-        create: (state, action) => {
+        createItem: (state, action) => {
             state.items.push({item: action.payload.item, id: state.items.length + 1})
             state.count ++
         },

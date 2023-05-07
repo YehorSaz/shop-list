@@ -1,13 +1,13 @@
 
 .main-layout {
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     /*justify-content: space-around;*/
-    align-items: center;
+    /*align-items: center;*/
     background-color: lightgray;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .new-button {
@@ -48,7 +48,6 @@
 /*--------LISTS---------*/
 
 
-
 .lists {
     display: flex;
     flex-direction: column;
@@ -58,18 +57,27 @@
 }
 
 .new-item-button {
-    align-self: center;
-    width: 5rem;
-    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
+    position: sticky;
+}
+
+.new-item-button > svg {
+    width: 2.5em;
+    height: 2.5em;
 }
 
 .list-buttons {
     display: flex;
-    height: 10vh;
-    position: relative;
-    left: 40%;
+    justify-content: center;
+    height: 20%;
 }
+
 .plIcon {
 
 }
@@ -81,7 +89,10 @@
 }
 
 .mic-button {
-    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 /*----------List-------------*/
@@ -94,11 +105,15 @@
     width: 100%;
     height: 60vh;
     background-color: khaki;
+    overflow-y: scroll;
 }
 
 .save-button {
     margin-bottom: 5%;
     height: 30vh;
+}
+.save-button-none {
+    display: none;
 }
 
 .hide-button {
@@ -110,6 +125,7 @@
     border-radius: 0.5rem;
     background-color: crimson;
 }
+
 .edit-button {
     border-radius: 0.5rem;
 }
@@ -128,6 +144,7 @@
     width: 100%;
     margin: 5px 0 5px 5px;
 }
+
 .one-item-buttons {
     display: flex;
     justify-content: space-between;
@@ -163,6 +180,7 @@
     height: 30vh;
     width: 100%;
 }
+
 .item-form > input {
     display: flex;
     width: 98%;
@@ -171,6 +189,7 @@
     margin-bottom: 10%;
     border-radius: 0.4rem;
 }
+
 .item-form > button {
     /*height: 20%;*/
     border-radius: 1.3rem;
