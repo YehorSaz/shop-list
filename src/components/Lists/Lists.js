@@ -24,6 +24,7 @@ const Lists = () => {
 
     const showForm = () => {
         document.querySelector('#input-field').classList.add('show-form')
+        document.querySelector('.save-button').classList.remove('save-button-none')
     }
     const hideForm = () => {
         document.querySelector('#input-field').classList.remove('show-form')
@@ -74,11 +75,29 @@ const Lists = () => {
 
     let speech1 = 0;
 
+    // const sort = () => {
+    //     document.querySelector('.list-items').append(document.querySelector(`.one-item-${idForSort}`))
+    //     dispatch(itemActions.sortItem(null))
+    // }
+
 
     return (
 
         <div className={'lists'}>
-            <h1>Залишилось {count}</h1>
+
+            <div className={'lists-header'}>
+
+                <h3>Залишилось: {count}</h3>
+
+                <button className={'dell-all'} onClick={() => {
+                    dispatch(itemActions.deleteAll())
+                    dispatch(itemActions.resetCount())
+                }
+                }>
+                    видалити все
+                </button>
+
+            </div>
 
 
             <div className={'list-items'}>{
@@ -110,13 +129,23 @@ const Lists = () => {
 
 
                     <button className={'new-item-button'}
-                            onTouchStart={() => speech1 = setTimeout(() => {
-                                speech()
-                            }, 2000)} onTouchEnd={() => {
-                        clearTimeout(speech1);
-                        showForm();
-                        reset();
-                    }}>
+
+                            onTouchStart={() => {
+                                window.oncontextmenu = function(event) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    return false;
+                                };
+                                speech1 = setTimeout(() => {
+                                    speech()
+                                }, 1500)
+                            }}
+
+                            onTouchEnd={() => {
+                                clearTimeout(speech1);
+                                showForm();
+                                reset();
+                            }}>
                         <BsFillMicFill/>додати
                     </button>
 

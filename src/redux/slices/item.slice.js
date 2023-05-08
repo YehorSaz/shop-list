@@ -4,7 +4,8 @@ const initialState = {
     items: [],
     itemForEdit: null,
     trigger: null,
-    count: null
+    count: null,
+    idForSort: null
 }
 
 const slice = createSlice({
@@ -39,7 +40,17 @@ const slice = createSlice({
         },
         itemCountInc: state => {
             state.count ++
+        },
+        sortItem: (state, action) => {
+            state.idForSort = action.payload;
+        },
+        deleteAll: (state, action) => {
+            state.items.splice(0, state.items.length)
+        },
+        resetCount: state => {
+            state.count = null
         }
+
         }
     }
 );

@@ -8,8 +8,8 @@ const MainLayout = () => {
     return (
 
         <div className={'main-layout'}>
-            Main Layout
-            <Header/>
+            {/*Main Layout*/}
+            {/*<Header/>*/}
             <Outlet/>
         </div>
     );

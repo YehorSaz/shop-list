@@ -3,6 +3,8 @@ import {useDispatch} from "react-redux";
 import {MdOutlineDoneOutline} from "react-icons/md";
 
 import {itemActions} from "../../redux/slices";
+import {RiDeleteBin2Line} from "react-icons/ri";
+import {FaEdit} from "react-icons/fa";
 
 const List = ({items}) => {
 
@@ -14,7 +16,10 @@ const List = ({items}) => {
         const textDecor = document.querySelector(`.product-text-${id}`);
         if (textDecor.classList.length < 2) {
             textDecor.classList.add('product-text-custom')
-            document.querySelector('.list-items').append(document.querySelector(`.one-item-${id}`))
+
+                document.querySelector('.list-items').append(document.querySelector(`.one-item-${id}`))
+
+            // dispatch(itemActions.sortItem(id))
             dispatch(itemActions.itemCountDec())
         } else {
             textDecor.classList.remove('product-text-custom')
@@ -30,6 +35,7 @@ const List = ({items}) => {
             dispatch(itemActions.deleteItem(id))
             dispatch(itemActions.itemCountInc())
         }
+        dispatch(itemActions.editItem(null))
     }
 
 
@@ -42,10 +48,11 @@ const List = ({items}) => {
                 <div className={'one-item-buttons'}>
                     <button className={'delete-button'} onClick={() =>
                         delItem(id)}>
-                        видалити
+                        <RiDeleteBin2Line/>
                     </button>
 
-                    <button className={'edit-button'} onClick={() => dispatch(itemActions.editItem(items))}>редагувати
+                    <button className={'edit-button'} onClick={() => dispatch(itemActions.editItem(items))}>
+                        <FaEdit/>
                     </button>
 
                     <button className={'done-button'} onClick={selectItem}>
