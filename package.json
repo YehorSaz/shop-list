@@ -1,7 +1,7 @@
 {
   "name": "shop-list",
   "version": "0.1.0",
-  "homepage": "https://yehorsaz.github.io/shop-list/",
+  "homepage": "https://shop-list-gold.vercel.app/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
