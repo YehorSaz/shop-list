@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {itemActions} from "../../redux/slices";
 import {List} from "../List/List";
+import {TiPlus} from "react-icons/ti";
 
 
 const Lists = () => {
@@ -34,7 +35,6 @@ const Lists = () => {
     const save = (item) => {
         dispatch(itemActions.createItem(item))
         reset()
-        hideForm()
     }
     const update = (item) => {
         dispatch(itemActions.updateItem(item))
@@ -75,11 +75,6 @@ const Lists = () => {
 
     let speech1 = 0;
 
-    // const sort = () => {
-    //     document.querySelector('.list-items').append(document.querySelector(`.one-item-${idForSort}`))
-    //     dispatch(itemActions.sortItem(null))
-    // }
-
 
     return (
 
@@ -91,7 +86,7 @@ const Lists = () => {
 
                 <button className={'dell-all'} onClick={() => {
                     dispatch(itemActions.deleteAll())
-                    dispatch(itemActions.resetCount())
+                    localStorage.clear()
                 }
                 }>
                     видалити все
@@ -138,7 +133,7 @@ const Lists = () => {
                                 };
                                 speech1 = setTimeout(() => {
                                     speech()
-                                }, 1500)
+                                }, 1000)
                             }}
 
                             onTouchEnd={() => {
@@ -146,7 +141,8 @@ const Lists = () => {
                                 showForm();
                                 reset();
                             }}>
-                        <BsFillMicFill/>додати
+                        <BsFillMicFill/>
+                        <TiPlus/>
                     </button>
 
                 </div>

@@ -1,7 +1,9 @@
-
+#root {
+    height: 100vh;
+}
 .main-layout {
     width: 100%;
-    height: 93vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background: linear-gradient(350deg, #67c57e 0%, #e1e8ca 100%);
@@ -37,27 +39,34 @@
     margin: 5% 5% 0 0;
 }
 
-.header-link > h3 {
-    margin: 0 auto;
-    color: green;
+/*.header-link > h3 {*/
+/*    margin: 0 auto;*/
+/*    color: green;*/
+/*}*/
+h3 {
+    color: #656262;
 }
-
 
 /*--------LISTS---------*/
 
 .lists-header {
+    height: 8vh;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5% 5% 0 5%;
+    border-radius: 0 0 1rem 1rem;
+    background: linear-gradient(350deg, #92c28c 0%, #d2e8c6 100%);
+    box-shadow: 1px 1px 3px 0 #000;
 }
 
 
 
 .dell-all {
-    border-radius: 0.5rem;
-    height: 2em;
-    background: linear-gradient(350deg, #670505 0%, #ec7c5e 100%);
+    border-radius: 1rem 0.5rem 1rem 0.5rem;
+    height: 3em;
+    background: linear-gradient(350deg, #a60606 0%, #e7b9b9 100%);
     color: whitesmoke;
 }
 
@@ -80,7 +89,7 @@
     border: none;
     position: sticky;
     background: linear-gradient(350deg, #4bbb40 0%, #d2e8c6 100%);
-    box-shadow: 1px 1px 3px 0px #000;
+    box-shadow: 1px 1px 3px 0 #000;
 }
 
 .new-item-button > svg {
@@ -92,7 +101,10 @@
 .list-buttons {
     display: flex;
     justify-content: center;
-    height: 20%;
+    height: 25%;
+    border-radius: 2rem 2rem 0 0;
+    background: #92c088;
+    box-shadow: 0 10px 20px 5px #294f29;
 }
 
 .plIcon {
@@ -118,24 +130,34 @@
 .product {
     z-index: 0;
 }
+#products {
+    width: 65%;
+    padding-left: 5px;
+    color: #656262;
+}
 
 .list-items {
     width: 100%;
-    height: 60vh;
+    height: 65vh;
     overflow-y: scroll;
+    background: linear-gradient(350deg, #90c581 0%, #d2e8c6 100%);
+    border-radius: 1rem 0 1rem 0;
 }
 
 .save-button {
     margin-bottom: 5%;
-    height: 30vh;
+    height: 25vh;
+    border-radius: 1.3rem;
 }
 .save-button-none {
     display: none;
 }
 
 .hide-button {
-    width: 40%;
+    width: 60%;
     align-self: center;
+    height: 30vh;
+    border-radius: 1.5rem;
 }
 
 .delete-button {
@@ -143,12 +165,14 @@
     background: transparent;
     border: none;
     color: red;
+    scale: 1.5;
 }
 
 .edit-button {
     color: #624796;
     border: none;
     background: transparent;
+    scale: 1.5;
 }
 
 .done-button {
@@ -177,13 +201,14 @@
     justify-content: space-between;
     align-items: center;
     width: 95%;
-    height: 7%;
+    height: 10%;
     margin: 5px 0 15px 10px;
     font-size: 20px;
     font-style: italic;
-    box-shadow: 1px 1px 3px 0px #000;
+    box-shadow: 1px 1px 3px 0 #000;
     border-left: none;
-    border-radius: 3px;
+    border-radius: 1.5rem 0.2rem 1.5rem 0.2rem;
+
 }
 
 .one-item-buttons {
@@ -205,8 +230,12 @@
 .show-form {
     display: flex;
     position: absolute;
-    top: 40%;
-    left: 8%;
+    top: 35%;
+    /*left: 8%;*/
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     opacity: 1;
     z-index: 2;
 }
@@ -228,17 +257,16 @@
     min-height: 60px;
     font-size: 14px;
     margin-bottom: 10%;
-    border-radius: 0.4rem;
+    border-radius: 2rem 0.5rem 2rem 0.5rem;
     border: none;
-    box-shadow: 1px 1px 3px 0px #000;
+    box-shadow: 1px 1px 3px 0 #000;
 }
 
 .item-form > button {
-    border-radius: 1.3rem;
     font-size: 1.5em;
     border: none;
-    box-shadow: 1px 1px 3px 0px #000;
-    background: linear-gradient(350deg, #74d376 0%, #a5d993 100%);
+    box-shadow: 1px 1px 3px 0 #000;
+    background: linear-gradient(350deg, #72b672 0%, #c4efb4 100%);
 }
 
 /*--------AddNewPage-------*/
