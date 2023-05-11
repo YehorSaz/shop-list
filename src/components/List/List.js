@@ -18,6 +18,7 @@ const List = ({items}) => {
 
     listFunctions.componentOnLoad(classNames);
 
+
     return (
 
         <div className={`one-item one-item-${id}`}>
@@ -37,8 +38,10 @@ const List = ({items}) => {
                     <FaEdit/>
                 </button>
 
-                <button className={`done-button`} onClick={() => listFunctions.markItem(dispatch, id)}>
-                    <GiCheckMark/>
+                <button id={`done-button-${id}`} className={`done-button`} onClick={() => listFunctions.markItem(dispatch, id)}>
+
+                        <GiCheckMark/>
+
                 </button>
 
             </div>

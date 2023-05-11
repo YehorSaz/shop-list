@@ -17,16 +17,19 @@ const listFunctions = {
     },
     markItem: (dispatch, id) => {
         const textDecor = document.querySelector(`.product-text-${id}`);
-
+        const icon = document.querySelector(`#done-button-${id}`);
+        console.log(icon);
         if (textDecor.classList.length < 2) {
             textDecor.classList.add('product-text-custom')
+            icon.classList.add('done-button-vis');
 
             dispatch(itemActions.addClassName(textDecor.className))
             dispatch(itemActions.itemCountDec())
 
+
         } else {
             textDecor.classList.remove('product-text-custom')
-
+            icon.classList.remove('done-button-vis');
             dispatch(itemActions.itemCountInc())
             dispatch((itemActions.removeClassName(`${textDecor.className} product-text-custom`)))
         }

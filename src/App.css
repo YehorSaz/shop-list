@@ -1,9 +1,9 @@
 #root {
     height: 100vh;
 }
-body {
-    overscroll-behavior: none;
-}
+/*body {*/
+/*    overscroll-behavior: none;*/
+/*}*/
 .main-layout {
     width: 100%;
     height: 100%;
@@ -178,10 +178,16 @@ h3 {
 .done-button {
     border: none;
     background: transparent;
+    margin-right: 5px;
+    display: none;
 }
 .done-button > svg {
     scale: 1.5;
     color: green;
+}
+
+.done-button-vis {
+    display: block;
 }
 
 .product-text {
@@ -214,6 +220,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     width: 35%;
+    margin-right: 5px;
 }
 
 /*---form----------------------------------*/
