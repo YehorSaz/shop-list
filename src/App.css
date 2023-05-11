@@ -145,7 +145,7 @@ h3 {
 
 .save-button {
     margin-bottom: 5%;
-    height: 25vh;
+    min-height: 25vh;
     border-radius: 1.3rem;
 }
 .save-button-none {
@@ -155,7 +155,7 @@ h3 {
 .hide-button {
     width: 60%;
     align-self: center;
-    height: 30vh;
+    min-height: 30vh;
     border-radius: 1.5rem;
 }
 
