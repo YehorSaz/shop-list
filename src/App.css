@@ -42,10 +42,6 @@ body {
     margin: 5% 5% 0 0;
 }
 
-/*.header-link > h3 {*/
-/*    margin: 0 auto;*/
-/*    color: green;*/
-/*}*/
 h3 {
     color: #656262;
 }
@@ -164,7 +160,6 @@ h3 {
 }
 
 .delete-button {
-    /*border-radius: 0.5rem;*/
     background: transparent;
     border: none;
     color: red;
@@ -179,7 +174,6 @@ h3 {
 }
 
 .done-button {
-    /*border-radius: 50px;*/
     border: none;
     background: transparent;
 }
@@ -218,7 +212,6 @@ h3 {
     display: flex;
     justify-content: space-between;
     width: 35%;
-    /*padding-right: 5%;*/
 }
 
 /*---form----------------------------------*/
@@ -233,8 +226,7 @@ h3 {
 .show-form {
     display: flex;
     position: absolute;
-    top: 35%;
-    /*left: 8%;*/
+    top: 20%;
     margin-left: auto;
     margin-right: auto;
     left: 0;

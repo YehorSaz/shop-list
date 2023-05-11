@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useForm} from "react-hook-form";
-import {BsFillMicFill} from "react-icons/bs";
 import {useDispatch, useSelector} from "react-redux";
+
+import {BsFillMicFill} from "react-icons/bs";
+import {TiPlus} from "react-icons/ti";
 
 import {itemActions} from "../../redux/slices";
 import {List} from "../List/List";
-import {TiPlus} from "react-icons/ti";
-
+import {formActions, listFunctions, speech} from "../../services";
 
 const Lists = () => {
 
@@ -18,62 +19,23 @@ const Lists = () => {
         if (itemForEdit) {
             setValue('item', itemForEdit.item)
             setValue('id', itemForEdit.id)
-            showForm()
+            formActions.showForm()
         }
     }, [itemForEdit, setValue]);
 
 
-    const showForm = () => {
-        document.querySelector('#input-field').classList.add('show-form')
-        document.querySelector('.save-button').classList.remove('save-button-none')
-    }
-    const hideForm = () => {
-        document.querySelector('#input-field').classList.remove('show-form')
-        document.querySelector('.save-button').classList.remove('save-button-none')
-    }
-
-    const save = (item) => {
-        dispatch(itemActions.createItem(item))
+    const saveI = (item) => {
+        listFunctions.saveItem(dispatch, item)
         reset()
     }
-    const update = (item) => {
-        dispatch(itemActions.updateItem(item))
-        dispatch(itemActions.editItem(null))
+    const updateI = (item) => {
+        listFunctions.update(dispatch, item)
         reset()
-        hideForm()
+        formActions.hideForm()
     }
 
 
-    let SpeechRecognition =
-            window.SpeechRecognition || window.webkitSpeechRecognition,
-        recognition;
-
-    const speech = () => {
-
-        recognition = new SpeechRecognition();
-        console.log(recognition.lang);
-        recognition.lang = 'uk-UA';
-        recognition.interimResults = true;
-        recognition.start();
-
-
-        recognition.onresult = (event) => {
-
-            const item = event.results[0][0].transcript;
-
-            if (event.results[0].isFinal) {
-                dispatch(itemActions.createItem({item: item}))
-                document.querySelector('.save-button').classList.add('save-button-none')
-
-
-            } else {
-                setValue('item', item)
-            }
-        }
-        showForm()
-    };
-
-    let speech1 = 0;
+    let speechTrigger = 0;
 
 
     return (
@@ -87,9 +49,10 @@ const Lists = () => {
                 <button className={'dell-all'} onClick={() => {
                     dispatch(itemActions.deleteAll())
                     localStorage.clear()
-                }
-                }>
+                    formActions.hideForm()
+                }}>
                     видалити все
+
                 </button>
 
             </div>
@@ -102,17 +65,24 @@ const Lists = () => {
 
             <div id={'input-field'} className={'input-field'}>
 
-                <form onSubmit={handleSubmit(itemForEdit ? update : save)} className={'item-form'}>
+                <form onSubmit={handleSubmit(itemForEdit ? updateI : saveI)} className={'item-form'}>
 
                     <input type="text" placeholder={'продукт'} {...register('item')} required={true}/>
 
+
                     <button className={'save-button save-button-none'} disabled={!isValid}>
+
                         {itemForEdit ? 'оновити' : 'зберегти'}
+
                     </button>
 
-                    <button onClick={handleSubmit(hideForm)} className={'hide-button'}>
+
+                    <button onClick={handleSubmit(formActions.hideForm)} className={'hide-button'}>
+
                         закрити
+
                     </button>
+
                 </form>
 
             </div>
@@ -126,23 +96,27 @@ const Lists = () => {
                     <button className={'new-item-button'}
 
                             onTouchStart={() => {
+
                                 window.oncontextmenu = function(event) {
                                     event.preventDefault();
                                     event.stopPropagation();
                                     return false;
-                                };
-                                speech1 = setTimeout(() => {
-                                    speech()
+                                }
+                                speechTrigger = setTimeout(() => {
+                                    speech(dispatch, setValue)
                                 }, 1000)
                             }}
 
                             onTouchEnd={() => {
-                                clearTimeout(speech1);
-                                showForm();
+
+                                clearTimeout(speechTrigger);
+                                formActions.showForm();
                                 reset();
                             }}>
+
                         <BsFillMicFill/>
                         <TiPlus/>
+
                     </button>
 
                 </div>
