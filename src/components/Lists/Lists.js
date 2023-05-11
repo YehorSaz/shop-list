@@ -51,7 +51,9 @@ const Lists = () => {
                     localStorage.clear()
                     formActions.hideForm()
                 }}>
-                    видалити все
+                    новий список
+                    <br/>
+                    (видалити все)
 
                 </button>
 
@@ -67,7 +69,7 @@ const Lists = () => {
 
                 <form onSubmit={handleSubmit(itemForEdit ? updateI : saveI)} className={'item-form'}>
 
-                    <input type="text" placeholder={'продукт'} {...register('item')} required={true}/>
+                    <input type="text" placeholder={'продукт...'} {...register('item')} required={true}/>
 
 
                     <button className={'save-button save-button-none'} disabled={!isValid}>
